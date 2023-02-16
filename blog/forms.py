@@ -12,4 +12,4 @@ class PhotoForm(forms.ModelForm):
 class BlogForm(forms.ModelForm):
     class Meta:
         model = models.Blog
-        fields = ['title', 'context']
+        fields = ['title', 'content']
