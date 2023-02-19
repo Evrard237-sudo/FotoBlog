@@ -40,7 +40,7 @@ class Blog(models.Model):
 
 
 class BlogContributor(models.Model):
-    contributor = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     contribution = models.CharField(max_length=255, blank=True)
 
