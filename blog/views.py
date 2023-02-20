@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.forms import formset_factory
 from django.db.models import Q
 from itertools import chain
+from django.core.paginator import Paginator
 
 from . import forms
 from . import models
@@ -21,8 +22,13 @@ def home(request):
         key=lambda instance: instance.date_created,
         reverse=True
     )
+
+    paginator = Paginator(blogs_and_photos, 6)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'blogs_and_photos': blogs_and_photos,
+        'page_obj': page_obj,
     }
     return render(request, 'blog/home.html', context=context)
 
